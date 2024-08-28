@@ -26,7 +26,7 @@ namespace EmployeeCRUD_BookxpertAssignment
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            
+
             if (string.IsNullOrWhiteSpace(txtId.Text) || !int.TryParse(txtId.Text, out int id))
             {
                 Label1.Text = "Valid Id is required.";
@@ -35,36 +35,35 @@ namespace EmployeeCRUD_BookxpertAssignment
 
             if (string.IsNullOrWhiteSpace(txtName.Text))
             {
-                Label1.Text = "Valid Id is required.";
+                Label3.Text = "Name is required.";
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtDesig.Text))
             {
-                Label1.Text = "Valid Id is required.";
-                return; ;
-            }
-
-            
-            if (string.IsNullOrWhiteSpace(txtSal.Text) || !decimal.TryParse(txtSal.Text, out _))
-            {
-                Label1.Text = "Valid Id is required.";
+                Label4.Text = "Designation is required.";
                 return;
             }
 
-            if (DropDownList2.SelectedIndex == 0) 
+            if (DropDownList2.SelectedIndex == 0)
             {
-                Label1.Text = "Valid Id is required.";
+                Label8.Text = "Gender is required.";
                 return;
             }
 
             if (DropDownList1.SelectedIndex == 0)
             {
-                Label1.Text = "Valid Id is required.";
+                Label7.Text = "State is required.";
                 return;
             }
 
-            
+            if (string.IsNullOrWhiteSpace(txtSal.Text) || !decimal.TryParse(txtSal.Text, out decimal salary))
+            {
+                Label5.Text = "Valid Salary is required.";
+                return;
+            }
+
+
             string checkQuery = "SELECT COUNT(1) FROM Employees WHERE Id = @Id";
             using (SqlCommand checkCmd = new SqlCommand(checkQuery, con))
             {
@@ -136,31 +135,31 @@ namespace EmployeeCRUD_BookxpertAssignment
 
             if (string.IsNullOrWhiteSpace(txtName.Text))
             {
-                Label1.Text = "Name is required.";
+                Label3.Text = "Name is required.";
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtDesig.Text))
             {
-                Label1.Text = "Designation is required.";
+                Label4.Text = "Designation is required.";
                 return;
             }
 
             if (DropDownList2.SelectedIndex == 0) 
             {
-                Label1.Text = "Gender is required.";
+                Label8.Text = "Gender is required.";
                 return;
             }
 
             if (DropDownList1.SelectedIndex == 0) 
             {
-                Label1.Text = "State is required.";
+                Label7.Text = "State is required.";
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtSal.Text) || !decimal.TryParse(txtSal.Text, out decimal salary))
             {
-                Label1.Text = "Valid Salary is required.";
+                Label5.Text = "Valid Salary is required.";
                 return;
             }
 
