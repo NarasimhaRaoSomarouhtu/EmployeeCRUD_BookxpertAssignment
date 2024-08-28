@@ -29,38 +29,38 @@ namespace EmployeeCRUD_BookxpertAssignment
             
             if (string.IsNullOrWhiteSpace(txtId.Text) || !int.TryParse(txtId.Text, out int id))
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Valid Id is required');", true);
+                Label1.Text = "Valid Id is required.";
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtName.Text))
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Name is required');", true);
+                Label1.Text = "Valid Id is required.";
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtDesig.Text))
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Designation is required');", true);
-                return;
+                Label1.Text = "Valid Id is required.";
+                return; ;
             }
 
             
             if (string.IsNullOrWhiteSpace(txtSal.Text) || !decimal.TryParse(txtSal.Text, out _))
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Valid Salary is required');", true);
+                Label1.Text = "Valid Id is required.";
                 return;
             }
 
             if (DropDownList2.SelectedIndex == 0) 
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Gender is required');", true);
+                Label1.Text = "Valid Id is required.";
                 return;
             }
 
             if (DropDownList1.SelectedIndex == 0)
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('State is required');", true);
+                Label1.Text = "Valid Id is required.";
                 return;
             }
 
