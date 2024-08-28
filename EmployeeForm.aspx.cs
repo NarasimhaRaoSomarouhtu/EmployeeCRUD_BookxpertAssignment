@@ -21,6 +21,7 @@ namespace EmployeeCRUD_BookxpertAssignment
             if (!IsPostBack)
             {
                 LoadRecord();
+                CalculateTotalSalary();
             }
         }
 
@@ -98,8 +99,10 @@ namespace EmployeeCRUD_BookxpertAssignment
                 con.Close();
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Successfully Inserted');", true);
-                LoadRecord(); 
+               
+                CalculateTotalSalary();
             }
+            LoadRecord();
 
             ClearForm(); 
         }
@@ -113,6 +116,30 @@ namespace EmployeeCRUD_BookxpertAssignment
             GridView2.DataSource= dt;
             GridView2.DataBind();
         }
+
+
+        private void CalculateTotalSalary()
+        {
+            string query = "SELECT SUM(Salary) AS TotalSalary FROM Employees";
+
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+                con.Open();
+                object result = cmd.ExecuteScalar();
+                con.Close();
+
+                if (result != DBNull.Value)
+                {
+                    lblTotalSalary.Text = "Total Salary: " + Convert.ToDecimal(result).ToString("C");
+                }
+                else
+                {
+                    lblTotalSalary.Text = "Total Salary: $0.00";
+                }
+            }
+        }
+
+
 
         private void ClearForm()
         {
@@ -202,7 +229,8 @@ namespace EmployeeCRUD_BookxpertAssignment
 
                     if (rowsAffected > 0)
                     {
-                        Label1.Text = "Record updated successfully.";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Updated Successfully ');", true);
+                        CalculateTotalSalary();
                     }
                     else
                     {
@@ -214,8 +242,9 @@ namespace EmployeeCRUD_BookxpertAssignment
             {
                 Label2.Text = "An error occurred: " + ex.Message;
             }
+            LoadRecord();
 
-            LoadRecord(); 
+            
         }
 
 
@@ -236,10 +265,14 @@ namespace EmployeeCRUD_BookxpertAssignment
 
                         con.Open();
                         int rowsAffected = cmd.ExecuteNonQuery();
+                        con.Close();
 
                         if (rowsAffected > 0)
                         {
-                            Label1.Text = "Record deleted successfully.";
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Successfully Deleted');", true);
+
+                            CalculateTotalSalary();
+                            
                         }
                         else
                         {
