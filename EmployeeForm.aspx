@@ -17,16 +17,12 @@
         .auto-style3 {
             height: 28px;
         }
-        .auto-style4 {
-            width: 185px;
-            height: 28px;
-        }
         .auto-style5 {
-            width: 302px;
+            width: 242px;
         }
         .auto-style6 {
             height: 28px;
-            width: 302px;
+            width: 242px;
         }
         .auto-style7 {
             margin-bottom: 1px;
@@ -39,7 +35,7 @@
             height: 45px;
         }
         .auto-style10 {
-            width: 302px;
+            width: 242px;
             height: 45px;
         }
         .auto-style12 {
@@ -50,11 +46,68 @@
             margin-top: 0px;
         }
     </style>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#Button1").click(function (event) {
+            var isValid = true;
+            var errorMessage = "";
+
+            var id = $("#<%=txtId.ClientID%>").val();
+            var name = $("#<%=txtName.ClientID%>").val();
+            var designation = $("#<%=txtDesig.ClientID%>").val();
+            var dateOfJoining = $("#<%=Calendar1.ClientID%>").val();
+            var salary = $("#<%=txtSal.ClientID%>").val();
+            var gender = $("#<%=DropDownList2.ClientID%>").val();
+            var state = $("#<%=DropDownList1.ClientID%>").val();
+
+            
+            if (id.trim() === "" || isNaN(id)) {
+                isValid = false;
+                errorMessage += "Valid Id is required.\n";
+            }
+
+            
+            if (name.trim() === "") {
+                isValid = false;
+                errorMessage += "Name is required.\n";
+            }
+
+            
+            if (designation.trim() === "") {
+                isValid = false;
+                errorMessage += "Designation is required.\n";
+            }
+
+            if (salary.trim() === "" || isNaN(salary)) {
+                isValid = false;
+                errorMessage += "Valid Salary is required.\n";
+            }
+
+            
+            if (gender === "0") { 
+                isValid = false;
+                errorMessage += "Gender is required.\n";
+            }
+
+            
+            if (state === "0") { 
+                isValid = false;
+                errorMessage += "State is required.\n";
+            }
+
+            if (!isValid) {
+                alert(errorMessage);
+                event.preventDefault(); 
+            }
+        });
+    });
+    </script>
+
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <div style="font-size:x-large; background-color: #800000; font-style: italic; font-variant: normal; color: #FFFFFF;" align="center">Employee Form CRUD for BOOKXPERT</div>
+            <div style="font-size:x-large; background-color:darkred; font-style: normal; font-variant: normal; color:azure;" align="center">Employee Form CRUD for BOOKXPERT</div>
         </div>
         <div>
 
@@ -62,34 +115,40 @@
                 <tr>
                     <td class="auto-style8"></td>
                     <td class="auto-style9">
-                        <asp:Label ID="Label1" runat="server" Text="EmpId"></asp:Label>
+                        <asp:Label ID="Label1" runat="server" Text="EmpId" ForeColor="#0099FF" BackColor="White" BorderColor="White" BorderWidth="8px" Width="220px"></asp:Label>
                     </td>
                     <td class="auto-style10">
-                        <asp:TextBox ID="txtId" runat="server" BackColor="White" BorderColor="Black" CssClass="auto-style12" Height="32px" Width="309px"></asp:TextBox>
+                        <asp:TextBox ID="txtId" runat="server" BackColor="White" BorderColor="White" CssClass="auto-style12" Height="32px" Width="311px"></asp:TextBox>
+                    </td>
+                    <td class="auto-style8"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style8"></td>
+                    <<td class="auto-style9">
+                        <asp:Label ID="Label3" runat="server" Text="EmpName" ForeColor="#0099FF" BackColor="White" BorderColor="White" BorderWidth="8px" Width="220px"></asp:Label>
+                    </td>
+                    <td class="auto-style10">
+                        <asp:TextBox ID="txtName" runat="server" BackColor="White" BorderColor="White" CssClass="auto-style7" Height="32px" Width="311px"></asp:TextBox>
                     </td>
                     <td class="auto-style8"></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
-                    <td class="auto-style2">EmpName</td>
-                    <td class="auto-style5">
-                        <asp:TextBox ID="txtName" runat="server" BackColor="White" BorderColor="Maroon" CssClass="auto-style7" Height="32px" Width="310px"></asp:TextBox>
+                    <td class="auto-style9">
+                        <asp:Label ID="Label4" runat="server" Text="Designation" ForeColor="#0099FF" BackColor="White" BorderColor="White" BorderWidth="8px" Width="220px"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td class="auto-style2">Designation</td>
                     <td class="auto-style5">
-                        <asp:TextBox ID="txtDesig" runat="server" BackColor="White" BorderColor="Maroon" CssClass="auto-style7" Height="32px" Width="311px"></asp:TextBox>
+                        <asp:TextBox ID="txtDesig" runat="server" BackColor="White" BorderColor="White" CssClass="auto-style7" Height="32px" Width="311px"></asp:TextBox>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style3"></td>
-                    <td class="auto-style4">DOJ</td>
+                    <td class="auto-style9">
+                        <asp:Label ID="Label6" runat="server" Text="DOJ" ForeColor="#0099FF" BackColor="White" BorderColor="White" BorderWidth="60px" Width="120px"></asp:Label>
+                    </td>
                     <td class="auto-style6">
-                        <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="White" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px" BorderWidth="1px">
+                        <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="White" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="320px" BorderWidth="1px">
                             <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
                             <NextPrevStyle Font-Size="8pt" ForeColor="#333333" Font-Bold="True" VerticalAlign="Bottom" />
                             <OtherMonthDayStyle ForeColor="#999999" />
@@ -102,9 +161,11 @@
                 </tr>
                 <tr>
                     <td class="auto-style3"></td>
-                    <td class="auto-style4">State</td>
+                    <td class="auto-style9">
+                        <asp:Label ID="Label7" runat="server" Text="State" ForeColor="#0099FF" BackColor="White" BorderColor="White" BorderWidth="8px" Width="220px"></asp:Label>
+                    </td>
                     <td class="auto-style6">
-                        <asp:DropDownList ID="DropDownList1" runat="server" Width="322px" BackColor="White">
+                        <asp:DropDownList ID="DropDownList1" runat="server" Width="320px" BackColor="White" ForeColor="#0099FF" Height="34px">
                             <asp:ListItem>Select State</asp:ListItem>
                             <asp:ListItem>US</asp:ListItem>
                             <asp:ListItem>NY</asp:ListItem>
@@ -116,9 +177,11 @@
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
-                    <td class="auto-style2">Gender</td>
+                    <td class="auto-style9">
+                        <asp:Label ID="Label8" runat="server" Text="Gender" ForeColor="#0099FF" BackColor="White" BorderColor="White" BorderWidth="8px" Width="220px"></asp:Label>
+                    </td>
                     <td class="auto-style5">
-                        <asp:DropDownList ID="DropDownList2" runat="server" BackColor="White" Width="321px">
+                        <asp:DropDownList ID="DropDownList2" runat="server" BackColor="White" Width="320px" ForeColor="#0099FF" Height="34px">
                             <asp:ListItem>Select Gender</asp:ListItem>
                             <asp:ListItem>Male</asp:ListItem>
                             <asp:ListItem>Female</asp:ListItem>
@@ -129,9 +192,11 @@
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
-                    <td class="auto-style2">Salary</td>
+                    <td class="auto-style9">
+                        <asp:Label ID="Label5" runat="server" Text="Salary" ForeColor="#0099FF" BackColor="White" BorderColor="White" BorderWidth="8px" Width="220px"></asp:Label>
+                    </td>
                     <td class="auto-style5">
-                        <asp:TextBox ID="txtSal" runat="server" BackColor="White" BorderColor="Maroon" CssClass="auto-style7" Height="32px" Width="316px"></asp:TextBox>
+                        <asp:TextBox ID="txtSal" runat="server" BackColor="White" BorderColor="White" CssClass="auto-style7" Height="32px" Width="311px"></asp:TextBox>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -151,7 +216,7 @@
     <div align="center">
         <asp:Button ID="Button1" runat="server" Text="Insert" BackColor="#33CC33" BorderColor="White" BorderStyle="Solid" CssClass="auto-style13" Height="39px" Width="219px" OnClick="Button1_Click" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button2" runat="server" Text="Edit" BackColor="#CC3399" BorderColor="White" BorderStyle="Dotted" CssClass="auto-style12" Height="39px" Width="208px" OnClick="Button2_Click" />
+        <asp:Button ID="Button2" runat="server" Text="Edit" BackColor="#CC3399" BorderColor="White" BorderStyle="Solid" CssClass="auto-style12" Height="39px" Width="208px" OnClick="Button2_Click" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="Button3" runat="server" Text="Delete" BackColor="Red" BorderColor="White" BorderStyle="Solid" CssClass="auto-style12" Height="39px" Width="145px" OnClick="Button3_Click" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
